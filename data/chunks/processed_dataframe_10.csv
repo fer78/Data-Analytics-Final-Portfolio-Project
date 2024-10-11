@@ -1,0 +1,26 @@
+air_conditioner,bath_num,chimney,condition,garage,garden,house_type,m2_real,price,room_num,storage_room,swimming_pool,terrace,latitude,longitude,address,p_code,region,municipality
+0,2,0,Resale,Not Included,0,Apartment,89,78000.0,4,0,0,0,41.5139591,-5.7306335,"Calle Hermanos Pinzón, San Lorenzo, Zamora, Castilla y León, 49021, España",49021,Castilla y León,Zamora
+0,1,0,Resale,Included,1,Apartment,97,94000.0,3,0,0,1,41.5076032,-5.7315181,"Calle Juan Sebastián Elcano, Candelaria, Zamora, Castilla y León, 49017, España",49017,Castilla y León,Zamora
+0,2,0,Resale,Included,0,Apartment,106,132000.0,4,0,0,0,41.5107682,-5.736492,"Losada - Avenida, Avenida de Requejo, Las Viñas, Zamora, Castilla y León, 49030, España",49030,Castilla y León,Zamora
+0,2,0,Resale,Included,0,Apartment,85,155000.0,3,0,0,1,41.5025118,-5.7410025,"Centro de Salud Puerta Nueva, 6, Calle de Puerta Nueva, La Horta, Zamora, Castilla y León, 49016, España",49016,Castilla y León,Zamora
+0,1,0,Resale,Included,0,Apartment,99,120000.0,3,1,0,1,41.5093674,-5.7348116,"Avenida del Cardenal Cisneros, Candelaria, Zamora, Castilla y León, 49030, España",49030,Castilla y León,Zamora
+0,1,0,Resale,Not Included,0,Apartment,103,67900.0,3,0,0,1,41.506132,-5.750308299999999,"Iglesia de San Lázaro, Plaza de San Lázaro, San Lázaro, Zamora, Castilla y León, 49071, España",49071,Castilla y León,Zamora
+0,1,0,Resale,Not Included,0,Apartment,87,36400.0,3,0,0,0,41.5076032,-5.7315181,"Calle Juan Sebastián Elcano, Candelaria, Zamora, Castilla y León, 49017, España",49017,Castilla y León,Zamora
+0,1,0,Resale,Not Included,0,Apartment,85,35900.0,3,0,0,0,41.5076032,-5.7315181,"Calle Juan Sebastián Elcano, Candelaria, Zamora, Castilla y León, 49017, España",49017,Castilla y León,Zamora
+0,2,0,Resale,Not Included,0,Apartment,100,61850.0,2,0,0,0,41.4996643,-5.7553014,"Calle de la Vega, Olivares, Zamora, Castilla y León, 49031, España",49031,Castilla y León,Zamora
+0,2,0,Resale,Not Included,0,Single-Family Home,241,204500.0,4,0,0,0,41.5034712,-5.7467879,"Restaurante Central, 5, Plaza Mayor, Barrio La Lana, Zamora, Castilla y León, 49004, España",49004,Castilla y León,Zamora
+0,2,0,Resale,Not Included,0,Apartment,69,41800.0,3,0,0,1,41.506132,-5.750308299999999,"Iglesia de San Lázaro, Plaza de San Lázaro, San Lázaro, Zamora, Castilla y León, 49071, España",49071,Castilla y León,Zamora
+0,2,0,Resale,Not Included,0,Apartment,150,95550.0,5,0,0,0,41.5076032,-5.7315181,"Calle Juan Sebastián Elcano, Candelaria, Zamora, Castilla y León, 49017, España",49017,Castilla y León,Zamora
+0,2,0,Resale,Not Included,0,Apartment,120,106100.0,4,0,0,0,41.50195430000001,-5.756774999999999,"Paseo de la Concha, Espíritu Santo, Zamora, Castilla y León, 49031, España",49031,Castilla y León,Zamora
+0,2,0,Resale,Not Included,0,Apartment,84,38200.0,3,0,0,0,41.5076032,-5.7315181,"Calle Juan Sebastián Elcano, Candelaria, Zamora, Castilla y León, 49017, España",49017,Castilla y León,Zamora
+0,1,0,Resale,Included,0,Apartment,80,84900.0,3,1,0,1,41.5034712,-5.7467879,"Restaurante Central, 5, Plaza Mayor, Barrio La Lana, Zamora, Castilla y León, 49004, España",49004,Castilla y León,Zamora
+0,1,0,Resale,Not Included,0,Apartment,94,36000.0,3,0,0,1,42.0076413,-5.6772641,"21, Calle San Vicente, Las Malvinas, Benavente, Zamora, Castilla y León, 49600, España",49600,Castilla y León,Zamora
+0,1,0,Resale,Not Included,0,Bungalow,39,69000.0,4,0,0,0,42.0028837,-5.6784691,"8, Calle La Rúa, Las Eras, Benavente, Zamora, Castilla y León, 49600, España",49600,Castilla y León,Zamora
+0,1,0,Resale,Not Included,0,Rural House,93,78000.0,3,0,0,0,42.0036169,-5.6815606,"20, Ronda de la Florida, Las Eras, Benavente, Zamora, Castilla y León, 49600, España",49600,Castilla y León,Zamora
+0,2,0,Resale,Included,0,Apartment,90,100000.0,3,1,0,1,42.002115,-5.6763032,"11, Calle de Santa Catalina, Casas de la Ría, Benavente, Zamora, Castilla y León, 49600, España",49600,Castilla y León,Zamora
+0,2,0,Resale,Not Included,1,Townhouse,130,75000.0,4,0,0,1,42.0858222,-6.6410418,"3, Calle de Galende, El Puente de Sanabria, Galende, Zamora, Castilla y León, 49350, España",49350,Castilla y León,Zamora
+0,2,0,Resale,Not Included,1,Single-Family Home,150,42000.0,2,0,0,0,41.9252099,-5.339664,"Calle Arriba, Villar de Fallaves, Zamora, Castilla y León, 49131, España",49131,Castilla y León,Zamora
+0,1,0,Fixer-upper,Not Included,0,Townhouse,80,30000.0,3,0,0,0,41.2328858,-5.4951406,"Calle Doctoras, Fuentesaúco, Zamora, Castilla y León, 49400, España",49400,Castilla y León,Zamora
+0,1,0,Fixer-upper,Not Included,0,Cottage,300,20000.0,3,0,0,0,41.58404,-5.37642,"Calle Toro, Villardondiego, Zamora, Castilla y León, España",49023,Castilla y León,Zamora
+0,2,0,Resale,Not Included,0,Apartment,89,38050.0,3,0,0,0,41.5076032,-5.7315181,"Calle Juan Sebastián Elcano, Candelaria, Zamora, Castilla y León, 49017, España",49017,Castilla y León,Zamora
+0,1,0,Fixer-upper,Not Included,0,Apartment,86,57000.0,3,0,0,1,41.5134551,-5.7372052,"Calle de Jiménez de Quesada, Las Viñas, Zamora, Castilla y León, 49030, España",49030,Castilla y León,Zamora
