@@ -1,4 +1,10 @@
-# Funcion para filtrar y actualizar el dataframe filtrado
+
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+import numpy as np
+import gc
+
 
 def filterdf(df, col1, val1, col2, val2):
     # Genera un dataframe filtrado por dos variables
@@ -65,11 +71,8 @@ def categorical_features_view(dataframe):
 # Boxplots
 
 def boxplot_view(dataframe, column):
-    dataframe.loc[:, column] = pd.to_numeric(dataframe[column], errors='coerce')
-    filtered_houses = dataframe.dropna(subset=[column])
-    
     plt.figure(figsize=(12, 2))
-    plt.boxplot(filtered_houses[column], vert=False, patch_artist=True, boxprops=dict(facecolor='lightblue'), showfliers=True)
+    plt.boxplot(dataframe[column], vert=False, patch_artist=True, boxprops=dict(facecolor='lightblue'), showfliers=True)
     plt.title(f'Boxplot of {column.capitalize()} (With Outliers)')
     plt.xlabel(column.capitalize())
     plt.grid(True)
