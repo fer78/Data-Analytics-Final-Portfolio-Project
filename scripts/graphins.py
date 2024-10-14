@@ -78,15 +78,12 @@ def boxplot_view(dataframe, column):
     plt.grid(True)
     plt.show()
 
-def boxplot_view_wo(dataframe, column):
-    dataframe.loc[:, column] = pd.to_numeric(dataframe[column], errors='coerce')
-    filtered_houses = dataframe.dropna(subset=[column])
-    
-    plt.figure(figsize=(12, 2))
-    plt.boxplot(filtered_houses[column], vert=False, patch_artist=True, boxprops=dict(facecolor='lightblue'), showfliers=False)
+def boxplot_view_wo(dataframe, column):  
+    plt.figure(figsize=(12, 2))  
+    plt.boxplot(dataframe[column], vert=False, patch_artist=True, boxprops=dict(facecolor='lightblue'), showfliers=False)
     plt.title(f'Boxplot of {column.capitalize()} (Without Outliers)')
     plt.xlabel(column.capitalize())
-    plt.grid(True)
+    plt.grid(True)  # Mostrar cuadrícula
     plt.show()
 
 def boxplot_with_mean(dataframe, group_col, target_col, show_outliers=True, figsize=(12, 8), log_transform=False):
