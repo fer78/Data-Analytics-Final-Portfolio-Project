@@ -7,8 +7,19 @@ import gc
 
 
 def filterdf(df, col1, val1, col2, val2):
-    # Genera un dataframe filtrado por dos variables
+    """
+    Generate a filtered dataframe by two variables.
+    """
     return df[(df[col1] == val1) & (df[col2] == val2)]
+
+
+
+def update(original_df, filtered_df):
+    """
+    Update the original dataframe with the changes made in a filtered dataframe.
+    """
+    original_df.loc[filtered_df.index, :] = filtered_df
+    return original_df
 
 
 
