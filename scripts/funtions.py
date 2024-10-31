@@ -28,11 +28,12 @@ def binary_categorical_view(dataframe):
     houses_vis = dataframe.copy()
     houses_vis[categorical_columns] = houses_vis[categorical_columns].replace({0: 'No', 1: 'Yes'})
     
-    plt.figure(figsize=(18, 12))
+    plt.figure(figsize=(16, 12))
     
     for i, column in enumerate(categorical_columns, 1):
         plt.subplot(3, 3, i)
-        ax = sns.countplot(x=houses_vis[column], order=['No', 'Yes'], palette='pastel')
+        # Asignar hue y desactivar la leyenda
+        ax = sns.countplot(x=houses_vis[column], hue=houses_vis[column], order=['No', 'Yes'], legend=False, palette="pastel")
         plt.title(f'{column.capitalize()}')
         plt.xlabel(column.capitalize())
         plt.ylabel('')
@@ -60,7 +61,8 @@ def categorical_features_view(dataframe):
     
     for i, column in enumerate(categorical_columns, 1):
         plt.subplot(4, 2, i)
-        ax = sns.countplot(x=houses_vis[column], palette='pastel')
+        # Asignamos 'hue' y desactivamos la leyenda
+        ax = sns.countplot(x=houses_vis[column], hue=houses_vis[column], legend=False, palette="pastel")
         plt.title(f'Datos de {column.capitalize()}')
         plt.xlabel(column.capitalize())
         plt.ylabel('')
@@ -77,7 +79,7 @@ def categorical_features_view(dataframe):
         ax.set_ylim(0, max_height * 1.15)
     
     plt.tight_layout(pad=4.0, w_pad=4.0, h_pad=4.0)
-    plt.show
+    plt.show()
 
 # Boxplots
 
@@ -106,7 +108,7 @@ def boxplot_with_mean(dataframe, group_col, target_col, show_outliers=True, figs
         df_copy[target_col] = np.log1p(df_copy[target_col])  # Usar log1p para manejar valores de 0
     
     plt.figure(figsize=figsize)
-    ax = sns.boxplot(data=df_copy, x=group_col, y=target_col, palette='pastel', showfliers=show_outliers)
+    ax = sns.boxplot(data=df_copy, x=group_col, y=target_col, showfliers=show_outliers)
 
     # Calcular y agregar la media a cada caja
     means = df_copy.groupby(group_col)[target_col].mean().values
@@ -119,58 +121,10 @@ def boxplot_with_mean(dataframe, group_col, target_col, show_outliers=True, figs
     plt.grid(True)
     plt.show()
 
-def plot_histogram(df, column, bins=20, kde=True, figsize=(12, 6), xlim=None):
-    
+def plot_histogram(df, column, bins=20, kde=True, figsize=(12, 6)):
     plt.figure(figsize=figsize)
-    sns.histplot(df[column], bins=bins, kde=kde, color='blue')
+    sns.histplot(df[column], bins=bins, kde=kde, color=sns.color_palette("dark")[2])
     plt.title(f'Histograma de {column}')
     plt.xlabel(column)
-    plt.ylabel('Frecuencia')
-    plt.grid(True)
-    
-    if xlim is not None:
-        plt.xlim(xlim)
-    
+    plt.ylabel('Frecuencia')  
     plt.show()
-
-def plot_distribution_by_price_segment(df):
-
-    # Agrupar los datos por segmento de precio y tipo de vivienda
-    count_df = df.groupby(['price_segment', 'house_type']).size().unstack(fill_value=0)
-    
-    # Crear el heatmap
-    plt.figure(figsize=(14, 10))
-    sns.heatmap(count_df.T, annot=True, fmt="d", cmap="YlGnBu", linewidths=.5)
-    plt.title('Distribución de Tipos de Vivienda por Segmento de Precio')
-    plt.xlabel('Segmento de Precio')
-    plt.ylabel('Tipo de Vivienda')
-    plt.xticks(rotation=45)
-    plt.show()
-
-
-def adjust_outliers(original_df, filtered_df, group_col, target_col):
-    filtered_df = filtered_df.copy()
-    grouped = filtered_df.groupby(group_col)[target_col]
-    
-    # Calcular media y límites para cada grupo
-    means = grouped.mean()
-    Q1 = grouped.quantile(0.25)
-    Q3 = grouped.quantile(0.75)
-    IQR = Q3 - Q1
-    lower_whiskers = Q1 - 1.5 * IQR
-    upper_whiskers = Q3 + 1.5 * IQR
-    
-    # Reemplazar outliers con la media del grupo
-    for group in grouped.groups:
-        lower_whisker = lower_whiskers[group]
-        upper_whisker = upper_whiskers[group]
-        mean = means[group]
-        # Reemplazar valores por encima del límite superior
-        filtered_df.loc[(filtered_df[group_col] == group) & (filtered_df[target_col] > upper_whisker), target_col] = mean
-        # Reemplazar valores por debajo del límite inferior
-        filtered_df.loc[(filtered_df[group_col] == group) & (filtered_df[target_col] < lower_whisker), target_col] = mean
-    
-    # Actualizar el DataFrame original
-    original_df.loc[filtered_df.index, target_col] = filtered_df[target_col]
-    
-    return filtered_df, original_df
