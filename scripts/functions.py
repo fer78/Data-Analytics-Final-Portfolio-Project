@@ -86,30 +86,62 @@ def categorical_features_view(dataframe):
 
 
 def boxplot_view(dataframe, column):
-    plt.figure(figsize=(12, 2))
+    plt.figure(figsize=(10, 6))
     plt.boxplot(dataframe[column], vert=False, patch_artist=True, boxprops=dict(facecolor='lightblue'), showfliers=True)
     plt.title(f'Boxplot of {column.capitalize()} (With Outliers)')
     plt.xlabel(column.capitalize())
     plt.show()
 
 def boxplot_view_wo(dataframe, column):  
-    plt.figure(figsize=(12, 2))  
+    plt.figure(figsize=(10, 6))
     plt.boxplot(dataframe[column], vert=False, patch_artist=True, boxprops=dict(facecolor='lightblue'), showfliers=False)
     plt.title(f'Boxplot of {column.capitalize()} (Without Outliers)')
     plt.xlabel(column.capitalize())
     plt.show()
 
 
-def plot_bivariate_distribution(dataframe, group_col, target_col, show_outliers=True, figsize=(12, 8)):
+def bivariate_distribution(dataframe, group_col, target_col, show_outliers=True, figsize=(10, 6)):
+    """
+    Displays a boxplot and a summary table of a variable grouped by another variable's values.
+    """
     df_copy = dataframe.copy()
 
+    # Boxplot
     plt.figure(figsize=figsize)
     ax = sns.boxplot(data=df_copy, x=group_col, y=target_col, showfliers=show_outliers, palette="pastel")
-
     plt.title(f'Boxplot of {target_col} by {group_col} with Mean Values')
     plt.xlabel(group_col)
     plt.ylabel(target_col)
     plt.xticks(rotation=45)
+    plt.show()
+
+    # Summary Statistics table
+    summary_stats = df_copy.groupby(group_col)[target_col].agg(
+        mean=lambda x: round(x.mean(), 2),
+        Q1=lambda x: x.quantile(0.25),
+        Q3=lambda x: x.quantile(0.75),
+        std_dev=lambda x: round(x.std(), 2)
+    ).reset_index()
+    summary_stats = summary_stats.sort_values(by='mean', ascending=False).reset_index(drop=True)
+    print(f"Summary Table of {target_col} by {group_col}")
+    print(summary_stats)
+
+
+def plot_rooms_bathrooms_distribution(df):
+    """
+    Displays the distribution of rooms and bathrooms
+    """
+    features = ['room_num', 'bath_num']
+    plt.figure(figsize=(10, 6))
+
+    for i, feature in enumerate(features, 1):
+        plt.subplot(1, 2, i)
+        sns.countplot(data=df, x=feature, palette="pastel")
+        plt.title(f'{feature.capitalize()} Distribution')
+        plt.xlabel(feature.capitalize())
+        plt.ylabel('Frequency')
+
+    plt.tight_layout()
     plt.show()
 
 def plot_category_histograms(df, numeric_col, category_col, bins=20, figsize=(18, 6), color_palette="pastel"):
@@ -128,7 +160,7 @@ def plot_category_histograms(df, numeric_col, category_col, bins=20, figsize=(18
     plt.show()
 
 
-def plot_histogram(df, column, bins=20, kde=True, figsize=(12, 6)):
+def plot_histogram(df, column, bins=20, kde=True, figsize=(10, 6)):
     plt.figure(figsize=figsize)
     sns.histplot(df[column], bins=bins, kde=kde, color=sns.color_palette("dark")[2])
     plt.title(f'Histograma de {column}')
@@ -155,6 +187,45 @@ def plot_binary_categorical_relationships(dataframe, target_variable, figsize=(1
         plt.title(f'{target_variable.capitalize()} Distribution by {binary_var.capitalize()} Availability')
         plt.xlabel(binary_var.capitalize())
         plt.ylabel(target_variable.capitalize())
+
+    plt.tight_layout()
+    plt.show()
+
+    # Summary table
+    summary_table = {}
+    for binary_var in binary_variables:
+        means = df_copy.groupby(binary_var)[target_variable].mean()
+        summary_table[binary_var.capitalize()] = [round(means.get('Yes', 0), 2), round(means.get('No', 0), 2)]
+
+    summary_df = pd.DataFrame(summary_table, index=['Yes', 'No'])
+
+    print(f"\nSummary Table of Mean {target_variable.capitalize()} by Binary Categorical Variables")
+    print(summary_df)
+
+
+def correlation_heatmap_by_size_category(df):
+    """
+    heat map of correlation by size category
+    """
+    size_categories = df['size_category'].unique()
+    rows = (len(size_categories) + 2) // 3
+    fig, axes = plt.subplots(rows, 3, figsize=(18, 6 * rows))
+
+    # Asegurar que `axes` sea siempre una lista para un solo heatmap
+    if rows == 1:
+        axes = [axes] if isinstance(axes, plt.Axes) else axes.flatten()
+    else:
+        axes = axes.flatten()
+
+    for i, size_category in enumerate(size_categories):
+        filtered_df = df[df['size_category'] == size_category]
+        corr = filtered_df[['price', 'm2_real', 'room_num', 'bath_num']].corr()
+        sns.heatmap(corr, annot=True, cmap="coolwarm", vmin=-1, vmax=1, ax=axes[i])
+        axes[i].set_title(f'Correlation Matrix for {size_category} Apartments')
+
+    # delete empty subplots if necessary
+    for j in range(i + 1, len(axes)):
+        fig.delaxes(axes[j])
 
     plt.tight_layout()
     plt.show()
