@@ -86,14 +86,14 @@ def categorical_features_view(dataframe):
 
 
 def boxplot_view(dataframe, column):
-    plt.figure(figsize=(10, 6))
+    plt.figure(figsize=(10, 2))
     plt.boxplot(dataframe[column], vert=False, patch_artist=True, boxprops=dict(facecolor='lightblue'), showfliers=True)
     plt.title(f'Boxplot of {column.capitalize()} (With Outliers)')
     plt.xlabel(column.capitalize())
     plt.show()
 
 def boxplot_view_wo(dataframe, column):  
-    plt.figure(figsize=(10, 6))
+    plt.figure(figsize=(10, 2))
     plt.boxplot(dataframe[column], vert=False, patch_artist=True, boxprops=dict(facecolor='lightblue'), showfliers=False)
     plt.title(f'Boxplot of {column.capitalize()} (Without Outliers)')
     plt.xlabel(column.capitalize())
@@ -123,7 +123,7 @@ def bivariate_distribution(dataframe, group_col, target_col, show_outliers=True,
         std_dev=lambda x: round(x.std(), 2)
     ).reset_index()
     summary_stats = summary_stats.sort_values(by='mean', ascending=False).reset_index(drop=True)
-    print(f"Summary Table of {target_col} by {group_col}")
+    print(f"Summary Table of {target_col} by {group_col} sorted by Mean:")
     print(summary_stats)
 
 
