@@ -230,3 +230,17 @@ def correlation_heatmap_by_size_category(df):
     plt.tight_layout()
     plt.show()
 
+def calculate_price_per_m2(df, price_col, m2_col, group_col):
+    """
+    Calculate price per square meters based on the media.
+    """
+    summary_table = df.groupby(group_col).agg(
+        mean_price=(price_col, 'mean'),
+        mean_m2=(m2_col, 'mean')
+    ).reset_index()
+
+    summary_table['price_m2_ratio'] = (summary_table['mean_price'] / summary_table['mean_m2']).round(2)
+    summary_table = summary_table.sort_values(by='price_m2_ratio').reset_index(drop=True)
+
+    return summary_table
+
