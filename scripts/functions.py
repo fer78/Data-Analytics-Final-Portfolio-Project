@@ -3,6 +3,9 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
+import folium
+
+from IPython.display import display
 
 
 def filterdf(df, col1, val1, col2, val2):
@@ -100,7 +103,7 @@ def boxplot_view_wo(dataframe, column):
     plt.show()
 
 
-def bivariate_distribution(dataframe, group_col, target_col, show_outliers=True, figsize=(10, 6)):
+def bivariate_distribution(dataframe, group_col, target_col, show_outliers=True, show_summary=True, figsize=(10, 6)):
     """
     Displays a boxplot and a summary table of a variable grouped by another variable's values.
     """
@@ -116,15 +119,16 @@ def bivariate_distribution(dataframe, group_col, target_col, show_outliers=True,
     plt.show()
 
     # Summary Statistics table
-    summary_stats = df_copy.groupby(group_col)[target_col].agg(
-        mean=lambda x: round(x.mean(), 2),
-        Q1=lambda x: x.quantile(0.25),
-        Q3=lambda x: x.quantile(0.75),
-        std_dev=lambda x: round(x.std(), 2)
-    ).reset_index()
-    summary_stats = summary_stats.sort_values(by='mean', ascending=False).reset_index(drop=True)
-    print(f"Summary Table of {target_col} by {group_col} sorted by Mean:")
-    print(summary_stats)
+    if show_summary:
+        summary_stats = df_copy.groupby(group_col)[target_col].agg(
+            mean=lambda x: round(x.mean(), 2),
+            Q1=lambda x: x.quantile(0.25),
+            Q3=lambda x: x.quantile(0.75),
+            std_dev=lambda x: round(x.std(), 2)
+        ).reset_index()
+        summary_stats = summary_stats.sort_values(by='mean', ascending=False).reset_index(drop=True)
+        print(f"Summary Table of {target_col} by {group_col} sorted by Mean:")
+        print(summary_stats)
 
 
 def plot_rooms_bathrooms_distribution(df):
