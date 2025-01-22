@@ -1,0 +1,10 @@
+Variable 1,Variable 2,Correlation
+price,price,1.0
+bath_num,price,0.49503105848655693
+m2_real,price,0.5935810849012657
+price,bath_num,0.49503105848655693
+bath_num,bath_num,1.0
+m2_real,bath_num,0.6185611573571503
+price,m2_real,0.5935810849012657
+bath_num,m2_real,0.6185611573571503
+m2_real,m2_real,1.0
